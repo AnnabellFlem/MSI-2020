@@ -7,7 +7,7 @@ It's a task list application in which has the following features:
 - Unmark item done
 - And other soon..
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React AppView](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -38,6 +38,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Create React AppView documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

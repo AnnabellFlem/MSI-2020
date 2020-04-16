@@ -1,0 +1,11 @@
+.App {
+  display: grid;
+  grid-template-areas:
+          'header favourites'
+          'main favourites'
+          'footer favourites';
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  height: 100vh;
+  position: relative;
+}

@@ -1,0 +1,34 @@
+@import '../../Styles/colors';
+@import '../../Styles/sizes';
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  grid-area: header;
+  margin-left: $indent-l;
+}
+
+.Header__logo {
+  color: $dark;
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 40px 0;
+}
+
+.Header__menu {
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.Header__menu span {
+  margin-left: 10px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: $grey-dark;
+}

@@ -1,0 +1,35 @@
+@import '../../Styles/colors';
+@import '../../Styles/sizes';
+
+.Favorite {
+  grid-area: favourites;
+  background: $grey-light;
+  display: flex;
+  flex-direction: column;
+}
+
+.Favorite_title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: $grey-dark;
+  margin: $indent-m $indent-m $indent-s;
+}
+
+.Favorite_list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 $indent-m;
+}
+
+.Favorite_item {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: $shadow;
+  max-height: max-content;
+  width: auto;
+}
+
+.Favorite_item svg.color {
+  fill: $grey-light;
+}

@@ -1,0 +1,78 @@
+@import '../../Styles/colors';
+@import '../../Styles/sizes';
+
+.JokeItem {
+  position: relative;
+  margin-bottom: $indent-s;
+}
+
+.JokeItem:last-child {
+  margin-bottom: 0;
+}
+
+.JokeItem__wrapper {
+  display: flex;
+  align-items: start;
+  margin: 47px $indent-s $indent-s $indent-s;
+}
+
+.JokeItem__icons {
+  margin-right: $indent-s;
+}
+
+.JokeItem__icons svg.heart {
+  position: absolute;
+  top: $indent-s;
+  right: $indent-s;
+}
+
+.JokeItem__icons svg .circle {
+  fill: $grey-light;
+}
+
+.JokeItem__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.JokeItem__link {
+  display: flex;
+  align-items: start;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.JokeItem__link span {
+  color: $grey-dark;
+  margin-right: 2px;
+}
+
+.JokeItem__link a {
+  margin-right: 5px;
+  color: $purple-light;
+}
+
+.JokeItem__info {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+  color: $grey-dark;
+}
+
+.JokeItem__text {
+  color: $dark;
+  font-size: $font-xs;
+  line-height: $lh-xs;
+  font-weight: normal;
+  margin: 5px 0 $indent-s 0;
+}
+
+.JokeItem__info mark {
+  background: none;
+  font-weight: 500;
+  color: currentColor;
+}
+
+

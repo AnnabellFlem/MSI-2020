@@ -1,0 +1,24 @@
+@import '../../Styles/colors';
+@import '../../Styles/sizes';
+
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  margin-left: $indent-l;
+}
+
+.main__title {
+  font-size: 24px;
+  line-height: $lh-l;
+  color: $dark;
+  font-weight: 500;
+  margin-bottom: $indent-m;
+  margin-top: 0;
+}
+
+.main__title strong {
+  font-weight: bold;
+  display: block;
+  font-size: $font-l;
+}
