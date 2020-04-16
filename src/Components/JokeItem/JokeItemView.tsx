@@ -28,7 +28,12 @@ const JokeItemView: React.FC<Prop> = ({ className }) => {
                 No one is biologically strong enough for this.
                 He mustve conceived himself.
           </p>
-          <small className="JokeItem__info">Last update: <mark>1923 hours ago</mark></small>
+          <div className="JokeItem__info-wrapper">
+            <small className="JokeItem__info">Last update: <mark>1923 hours ago</mark></small>
+            <div className="JokeItem__category">
+              <span>celebrity</span>
+            </div>
+          </div>
         </div>
       </div>
     </li>

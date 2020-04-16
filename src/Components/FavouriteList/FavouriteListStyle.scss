@@ -28,8 +28,22 @@
   box-shadow: $shadow;
   max-height: max-content;
   width: auto;
+  min-width: 360px;
 }
 
 .Favorite_item svg.color {
   fill: $grey-light;
+}
+
+.Favorite_item svg.heart {
+  right: $indent-s;
+  top: $indent-s;
+}
+
+.Favorite_item svg .circle {
+  fill: $grey-light;
+}
+
+.Favorite_item .JokeItem__category {
+  display: none;
 }

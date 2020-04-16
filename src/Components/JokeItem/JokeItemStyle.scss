@@ -22,12 +22,7 @@
 
 .JokeItem__icons svg.heart {
   position: absolute;
-  top: $indent-s;
-  right: $indent-s;
-}
-
-.JokeItem__icons svg .circle {
-  fill: $grey-light;
+  cursor: pointer;
 }
 
 .JokeItem__text-wrapper {
@@ -42,6 +37,16 @@
   font-weight: 500;
   font-size: 10px;
   line-height: 14px;
+  cursor: pointer;
+}
+
+.JokeItem__link:hover a {
+  color: darken( $purple-light, 10% )
+}
+
+.JokeItem__link:hover svg {
+  transform: translate(2px, -2px);
+  fill: darken( $purple-light, 10% );
 }
 
 .JokeItem__link span {
@@ -52,6 +57,11 @@
 .JokeItem__link a {
   margin-right: 5px;
   color: $purple-light;
+  transition: all .2s ease-in;
+}
+
+.JokeItem__link svg {
+  transition: all .2s ease-in;
 }
 
 .JokeItem__info {
@@ -73,6 +83,28 @@
   background: none;
   font-weight: 500;
   color: currentColor;
+}
+
+.JokeItem__info-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.JokeItem__category {
+  width: max-content;
+  background: $white;
+  border-radius: 6px;
+}
+
+.JokeItem__category span {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 20px;
 }
 
 

@@ -14,7 +14,7 @@
   color: $dark;
   font-size: 20px;
   line-height: 1.4;
-  margin: 40px 0;
+  margin: $indent-m 0 78px;
 }
 
 .Header__menu {
@@ -31,4 +31,17 @@
   font-size: 20px;
   line-height: 1.4;
   color: $grey-dark;
+}
+
+
+@media (max-width: 1200px) {
+  .Header {
+    margin: 0 ($indent-l / 2);
+  }
+}
+
+@media (max-width: 1000px) {
+  .Header {
+    margin: 0 ($indent-l / 3.5);
+  }
 }

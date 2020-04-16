@@ -1,0 +1,29 @@
+@import '../../Styles/colors';
+@import '../../Styles/sizes';
+
+.Jokes {
+  display: flex;
+  flex-direction: column;
+}
+
+.Jokes__item {
+  background: $grey-light;
+  border-radius: 20px;
+}
+
+.Jokes__item svg.heart {
+  right: $indent-m;
+  top: $indent-m;
+}
+
+.Jokes__item svg .circle {
+  fill: $white;
+}
+
+.Jokes__item .JokeItem__wrapper {
+  margin: 67px $indent-m 45px;
+}
+
+.Jokes__item .JokeItem__text {
+  margin-bottom: 28px;
+}
