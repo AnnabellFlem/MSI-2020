@@ -107,4 +107,26 @@
   padding: 6px 20px;
 }
 
+@media (max-width: 750px) {
+  .Jokes__item .JokeItem__wrapper {
+    margin: 47px 20px 20px;
+  }
+
+  .JokeItem__info-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .JokeItem__info {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+  }
+
+  .Jokes__item svg.heart {
+    right: $indent-s;
+    top: $indent-s;
+  }
+}
+
 

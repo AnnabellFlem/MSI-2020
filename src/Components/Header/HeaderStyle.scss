@@ -7,14 +7,14 @@
   align-items: center;
   height: max-content;
   grid-area: header;
-  margin-left: $indent-l;
+  margin: $indent-m $indent-l 78px;
 }
 
 .Header__logo {
   color: $dark;
   font-size: 20px;
   line-height: 1.4;
-  margin: $indent-m 0 78px;
+  margin: 0;
 }
 
 .Header__menu {
@@ -36,12 +36,25 @@
 
 @media (max-width: 1200px) {
   .Header {
-    margin: 0 ($indent-l / 2);
+    margin: $indent-m ($indent-l / 2) 78px;
   }
 }
 
 @media (max-width: 1000px) {
   .Header {
-    margin: 0 ($indent-l / 3.5);
+    margin: $indent-m ($indent-l / 3.5) 78px;
+  }
+}
+
+@media (max-width: 920px) {
+  .Header__menu {
+    visibility: visible;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 750px) {
+  .Header {
+    margin: $indent-s $indent-s 78px;
   }
 }

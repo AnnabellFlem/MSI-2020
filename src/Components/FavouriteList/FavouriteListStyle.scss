@@ -47,3 +47,35 @@
 .Favorite_item .JokeItem__category {
   display: none;
 }
+
+@media (max-width: 920px) {
+  .Favorite_title {
+    display: none;
+  }
+
+  .Favorite {
+    padding-top: 88px;
+    position: absolute;
+    width: 60vw;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 750px) {
+  .Favorite {
+    width: 100vw;
+
+    display: none;
+  }
+
+  .Favorite_list {
+    margin: 0 $indent-s;
+  }
+
+  .Favorite_item {
+    min-width: unset;
+  }
+}

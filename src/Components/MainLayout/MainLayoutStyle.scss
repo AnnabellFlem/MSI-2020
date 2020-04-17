@@ -34,3 +34,9 @@
     margin: 0 ($indent-l / 3.5);
   }
 }
+
+@media (max-width: 750px) {
+  .main {
+    margin: 0 $indent-s;
+  }
+}
