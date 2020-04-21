@@ -5,7 +5,7 @@ const SearchPanelView: React.FC = () => {
   return (
     <div className="SearchPanel">
       <div className="SearchPanel__item">
-        <input className="SearchPanel__input" type="radio" id="random" name="filters" value="random" />
+        <input className="SearchPanel__input" type="radio" id="random" name="filters" value="random" defaultChecked />
         <label htmlFor="random">Random</label>
       </div>
       <div className="SearchPanel__item">
@@ -13,11 +13,11 @@ const SearchPanelView: React.FC = () => {
         <label htmlFor="categories">From categories</label>
         <ul className="SearchPanel__categories">
           <li>
-            <input className="SearchPanel__checkbox" id="animal" type="checkbox" value="animal" />
+            <input className="SearchPanel__checkbox" id="animal" type="checkbox" value="animal" defaultChecked />
             <label htmlFor="animal">animal</label>
           </li>
           <li>
-            <input className="SearchPanel__checkbox" id="career" type="checkbox" value="career" checked />
+            <input className="SearchPanel__checkbox" id="career" type="checkbox" value="career" />
             <label htmlFor="career">career</label>
           </li>
           <li>

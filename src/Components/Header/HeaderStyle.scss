@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: max-content;
+  height: auto;
   grid-area: header;
   margin: $indent-m $indent-l 78px;
 }
@@ -51,10 +51,28 @@
     visibility: visible;
     z-index: 2;
   }
+
+  .Header-overlay {
+    position: relative;
+  }
+
+  .Header-overlay:after {
+    position: absolute;
+    content: '';
+    width: 100vw;
+    height: 200vh;
+    right: 0;
+    z-index: 1;
+    background: $background;
+  }
 }
 
 @media (max-width: 750px) {
   .Header {
     margin: $indent-s $indent-s 78px;
+  }
+
+  .Header:after {
+    display: none;
   }
 }

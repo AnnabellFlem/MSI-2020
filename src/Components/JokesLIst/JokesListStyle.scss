@@ -2,15 +2,23 @@
 @import '../../Styles/sizes';
 
 .Jokes {
+  height: 55vh;
+  overflow: auto;
+}
+
+.Jokes__list {
   display: flex;
   flex-direction: column;
   margin-top: 0;
   margin-bottom: 78px;
+  height: 60vh;
+  overflow: visible;
 }
 
 .Jokes__item {
   background: $grey-light;
   border-radius: 20px;
+  max-width: 900px;
 }
 
 .Jokes__item svg.heart {

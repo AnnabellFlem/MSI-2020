@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './JokeItemStyle.scss'
 import { ReactComponent as HeartFullIcon } from '../../Images/svg/heart-full.svg'
 import { ReactComponent as HeartEmptyIcon } from '../../Images/svg/heart-empty.svg'
@@ -7,14 +7,25 @@ import { ReactComponent as LinkIcon } from '../../Images/svg/link.svg'
 
 type Prop = {
     className: string
+    handleItem: any
+    id: number
 }
 
-const JokeItemView: React.FC<Prop> = ({ className }) => {
+const JokeItemView: React.FC<Prop> = ({ className, handleItem, id }) => {
+  const [heartIcon, setHeartIcon] = useState()
+
+  const heartClick = (id: number) => {
+    handleItem(id)
+    setHeartIcon(!heartIcon)
+  }
+
   return (
     <li className={ `${className} JokeItem` }>
       <div className="JokeItem__wrapper">
         <div className="JokeItem__icons">
-          <HeartFullIcon />
+          { (heartIcon)
+            ? <HeartFullIcon onClick={ () => heartClick(id) } />
+            : <HeartEmptyIcon onClick={ () => heartClick(id) } /> }
           <MessageIcon />
         </div>
         <div className="JokeItem__text-wrapper">

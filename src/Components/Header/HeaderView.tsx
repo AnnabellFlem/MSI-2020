@@ -1,16 +1,25 @@
 import React, { useState } from 'react'
 import './HeaderStyle.scss'
-import CloseIcon from '../../Images/svg/close.svg'
+import { ReactComponent as CloseIcon } from '../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../Images/svg/burger.svg'
 
-const HeaderView: React.FC = () => {
-  const [icon, setButtonIcon] = useState(<BurgerIcon />)
+type Props = {
+  handleBtnClick: any
+}
+
+const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
+  const [closeIcon, setCloseIcon] = useState(false)
+  const iconClick = () => {
+    setCloseIcon(!closeIcon)
+    handleBtnClick()
+  }
 
   return (
-    <header className="Header">
+    <header className={ `Header ${closeIcon ? 'Header-overlay' : ''}` }>
       <h1 className="Header__logo">MSI 2020</h1>
-      <button className="Header__menu" aria-label="Open list of favourite jokes">
-        { icon }
+      <button className="Header__menu" aria-label="Open list of favourite jokes"
+        onClick={ () => iconClick() } >
+        { closeIcon ? <CloseIcon tabIndex={ 0 } /> : <BurgerIcon tabIndex={ 0 } /> }
         <span>Favourite</span>
       </button>
     </header>

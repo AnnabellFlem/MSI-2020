@@ -4,15 +4,27 @@ import SearchPanel from '../SearchPanel'
 import JokesList from '../JokesLIst'
 
 const MainLayoutView: React.FC = () => {
+  const list = [{
+    id: 1
+  }, {
+    id: 2
+  }, {
+    id: 3
+  }, {
+    id: 4
+  }, {
+    id: 5
+  }]
+
   return (
     <main>
       <section className="main">
         <h2 className="main__title">
           <strong>Hey!</strong>
-                Let’s try to find a joke for you:
+          Let’s try to find a joke for you:
         </h2>
         <SearchPanel />
-        <JokesList />
+        <JokesList list={ list } />
       </section>
     </main>
   )

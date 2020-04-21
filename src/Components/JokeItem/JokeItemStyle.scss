@@ -7,7 +7,7 @@
 }
 
 .JokeItem:last-child {
-  margin-bottom: 0;
+  margin-bottom: $indent-s * 3;
 }
 
 .JokeItem__wrapper {

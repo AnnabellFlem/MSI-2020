@@ -2,14 +2,23 @@ import React from 'react'
 import './JokesListStyle.scss'
 import JokeItem from '../JokeItem'
 
-const JokesListView: React.FC = () => {
+type Props = {
+  list: {id: number}[]
+}
+
+const JokesListView: React.FC<Props> = ({ list }) => {
+  const handleItem = (id: number) => {
+    console.log(id)
+  }
+
   return (
-    <ul className="Jokes">
-      <JokeItem className="Jokes__item" />
-      <JokeItem className="Jokes__item" />
-      <JokeItem className="Jokes__item" />
-      <JokeItem className="Jokes__item" />
-    </ul>
+    <div className="Jokes">
+      <ul className="Jokes__list">
+        { list.map(({ id }) => {
+          return <JokeItem handleItem={ () => handleItem(id) } id={ id } className="Jokes__item" key={ id } />
+        }) }
+      </ul>
+    </div>
   )
 }
 
