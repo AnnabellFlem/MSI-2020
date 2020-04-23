@@ -2,14 +2,14 @@ import React from 'react'
 import './MainLayoutStyle.scss'
 import SearchPanel from '../SearchPanel'
 import JokesList from '../JokesLIst'
+import { JokesListType } from '../../Types'
 
-const MainLayoutView: React.FC = () => {
-  const list = [{
-    id: 1
-  }, {
-    id: 2
-  }]
+type Props = {
+  list: JokesListType
+  handleJokesList: any
+}
 
+const MainLayoutView: React.FC<Props> = ({ list, handleJokesList }) => {
   return (
     <main>
       <section className="main">
@@ -18,7 +18,8 @@ const MainLayoutView: React.FC = () => {
           Let’s try to find a joke for you:
         </h2>
         <SearchPanel />
-        <JokesList list={ list } />
+        <JokesList handleJokesList={ handleJokesList }
+          list={ list } />
       </section>
     </main>
   )

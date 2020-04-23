@@ -7,12 +7,12 @@
 }
 
 .JokeItem:last-child {
-  margin-bottom: $indent-s * 3;
+  margin-bottom: ($indent-s * 3);
 }
 
 .JokeItem__wrapper {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   margin: 47px $indent-s $indent-s $indent-s;
 }
 
@@ -33,7 +33,7 @@
 
 .JokeItem__link {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   font-weight: 500;
   font-size: 10px;
   line-height: 14px;
