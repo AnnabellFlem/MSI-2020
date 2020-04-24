@@ -1,11 +1,11 @@
 import React from 'react'
 import './FavouriteListStyle.scss'
 import JokeItem from '../JokeItem'
-import { JokesListType } from '../../Types'
+import { ModJokesListType } from '../../Types'
 
 type Props = {
   openFavList: boolean
-  favList: JokesListType
+  favList: ModJokesListType
   handleFavorites: any
 }
 
@@ -14,11 +14,13 @@ const FavouriteListView: React.FC<Props> = ({ openFavList, favList, handleFavori
     <aside className={ `Favorite ${openFavList ? '' : 'Favorite--open'}` }>
       <h2 className="Favorite_title">Favourite</h2>
       <ul className="Favorite_list">
-        { favList.map(({ id, isHeartFullIcon }) => {
-          return <JokeItem handleItem={ () => handleFavorites(id) }
-            id={ id } key={ id }
-            isHeartFullIcon={ isHeartFullIcon }
-            className="Favorite_item" />
+        { favList.map(({ id, isFavourite }) => {
+          if (isFavourite) {
+            return <JokeItem handleItem={ () => handleFavorites(id) }
+              id={ id } key={ id }
+              isFavourite={ isFavourite }
+              className="Favorite_item" />
+          }
         }) }
       </ul>
     </aside>

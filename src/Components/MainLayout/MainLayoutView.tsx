@@ -2,10 +2,10 @@ import React from 'react'
 import './MainLayoutStyle.scss'
 import SearchPanel from '../SearchPanel'
 import JokesList from '../JokesLIst'
-import { JokesListType } from '../../Types'
+import { ModJokesListType } from '../../Types'
 
 type Props = {
-  list: JokesListType
+  list: ModJokesListType
   handleJokesList: any
 }
 

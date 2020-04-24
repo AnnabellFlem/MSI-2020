@@ -1,20 +1,20 @@
 import React from 'react'
 import './JokesListStyle.scss'
 import JokeItem from '../JokeItem'
-import { JokesListType } from '../../Types'
+import { ModJokesListType } from '../../Types'
 
 type Props = {
-  list: JokesListType
+  list: ModJokesListType
   handleJokesList: any
 }
 
 const JokesListView: React.FC<Props> = ({ list, handleJokesList }) => {
   return (<div className="Jokes">
     <ul className="Jokes__list">
-      { list.map(({ id, isHeartFullIcon }) => {
+      { list.map(({ id, isFavourite }) => {
         return <JokeItem handleItem={ () => handleJokesList(id) }
           id={ id }
-          isHeartFullIcon={ isHeartFullIcon }
+          isFavourite={ isFavourite }
           className="Jokes__item"
           key={ id } />
       }) }

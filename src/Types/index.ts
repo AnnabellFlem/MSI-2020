@@ -1,4 +1,11 @@
 export type JokesListType = {
   id: number
-  isHeartFullIcon: boolean
+  name?: string
 }[]
+
+export type ModJokesListType = {
+  id: number
+  isFavourite: boolean
+}[]
+
+export type FavListType = Array<number>

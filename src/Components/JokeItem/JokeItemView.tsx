@@ -9,10 +9,10 @@ type Prop = {
     className: string
     handleItem: any
     id: number
-    isHeartFullIcon: boolean
+    isFavourite: boolean
 }
 
-const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isHeartFullIcon }) => {
+const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isFavourite }) => {
   const heartClick = (id: number) => {
     handleItem(id)
   }
@@ -21,7 +21,7 @@ const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isHeartFullIc
     <li className={ `${className} JokeItem` }>
       <div className="JokeItem__wrapper">
         <div className="JokeItem__icons">
-          { (isHeartFullIcon)
+          { (isFavourite)
             ? <HeartFullIcon onClick={ () => heartClick(id) } />
             : <HeartEmptyIcon onClick={ () => heartClick(id) } /> }
           <MessageIcon />

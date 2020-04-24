@@ -1,54 +1,70 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './MainPageStyle.scss'
 import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
-import { JokesListType } from '../../Types'
+import { JokesListType, ModJokesListType, FavListType } from '../../Types'
 
 const MainPageView: React.FC = () => {
   const [openFavList, setOpenFavList] = useState(false)
-  const [favList, setFavList] = useState([] as JokesListType)
-  const [jokeList, setJokeList] = useState([{
+  const [favList, setFavList] = useState<FavListType>([])
+  const list = [{
     id: 1,
-    isHeartFullIcon: false
+    name: 'aaa'
   }, {
     id: 2,
-    isHeartFullIcon: false
-  }])
+    name: 'qqq'
+  }]
+  const initJokeList = (list: JokesListType) => {
+    return list.map((item, index) => {
+      if (favList && item.id === favList[index]) {
+        return { ...item, isFavourite: true }
+      } else {
+        return { ...item, isFavourite: false }
+      }
+    })
+  }
+
+  const jokeListInitial = initJokeList(list)
+  const [jokeList, setJokeList] = useState<ModJokesListType>(jokeListInitial)
+
+  // useEffect(() => {
+  //   const initList = window.localStorage.getItem('favList')
+  //   if (initList) {
+  //     setFavList(() => [...JSON.parse(initList)])
+  //     console.log(initList)
+  //   }
+  // }, [])
+  useEffect(() => window.localStorage.setItem('favList', JSON.stringify(favList)), [favList])
 
   const addFavItem = (id: number) => {
     const obj = jokeList.find(o => o.id === id)
     if (obj) {
-      obj.isHeartFullIcon = true
-      setFavList(favList => [...favList, obj])
+      setFavList(favList => [...favList, obj.id])
+      setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isFavourite: true } : item))
     }
+    return favList
   }
 
-  const deleteFavItem = (id: number, obj: {}) => {
-    setFavList(favList => favList.filter(e => e !== obj))
-  }
-
-  const findFavItem = (id: number, list: JokesListType) => {
-    return list.find(o => o.id === id)
+  const deleteFavItem = (id: number, elem: number) => {
+    setFavList(favList => favList.filter(e => e !== elem))
+    setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isFavourite: false } : item))
   }
 
   const handleJokesList = (id: number) => {
-    const obj = findFavItem(id, favList)
-    if (obj) {
-      deleteFavItem(id, obj)
-      setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isHeartFullIcon: false } : item))
+    const elem = favList.indexOf(id)
+    if (elem !== -1) {
+      deleteFavItem(id, favList[elem])
     } else {
       addFavItem(id)
-      setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isHeartFullIcon: true } : item))
     }
   }
 
   const handleFavorites = (id: number) => {
-    const obj = findFavItem(id, favList)
-    if (obj) {
-      deleteFavItem(id, obj)
-      setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isHeartFullIcon: false } : item))
+    const elem = favList.indexOf(id)
+    if (elem !== -1) {
+      deleteFavItem(id, favList[elem])
     }
   }
 
@@ -59,7 +75,7 @@ const MainPageView: React.FC = () => {
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
     <MainLayout handleJokesList={ handleJokesList } list={ jokeList } />
-    <FavouriteList handleFavorites={ handleFavorites } openFavList={ openFavList } favList={ favList } />
+    <FavouriteList handleFavorites={ handleFavorites } openFavList={ openFavList } favList={ jokeList } />
     <Footer />
   </>)
 }
