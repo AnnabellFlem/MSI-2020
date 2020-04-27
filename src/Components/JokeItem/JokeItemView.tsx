@@ -10,20 +10,17 @@ type Prop = {
     handleItem: any
     id: number
     isFavourite: boolean
+    description: string
 }
 
-const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isFavourite }) => {
-  const heartClick = (id: number) => {
-    handleItem(id)
-  }
-
+const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isFavourite, description }) => {
   return (
     <li className={ `${className} JokeItem` }>
       <div className="JokeItem__wrapper">
         <div className="JokeItem__icons">
           { (isFavourite)
-            ? <HeartFullIcon onClick={ () => heartClick(id) } />
-            : <HeartEmptyIcon onClick={ () => heartClick(id) } /> }
+            ? <HeartFullIcon onClick={ () => handleItem(id) } />
+            : <HeartEmptyIcon onClick={ () => handleItem(id) } /> }
           <MessageIcon />
         </div>
         <div className="JokeItem__text-wrapper">
@@ -33,7 +30,7 @@ const JokeItemView: React.FC<Prop> = ({ className, handleItem, id, isFavourite }
             <LinkIcon />
           </div>
           <p className="JokeItem__text">
-                No one truly knows whos Chuck Norris real father.
+            { description }
                 No one is biologically strong enough for this.
                 He mustve conceived himself.
           </p>

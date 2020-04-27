@@ -6,16 +6,22 @@ import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
 import { JokesListType, ModJokesListType, FavListType } from '../../Types'
 
-const MainPageView: React.FC = () => {
+type Props = {
+  list: JokesListType
+}
+
+const MainPageView: React.FC<Props> = ({ list }) => {
   const [openFavList, setOpenFavList] = useState(false)
-  const [favList, setFavList] = useState<FavListType>([])
-  const list = [{
-    id: 1,
-    name: 'aaa'
-  }, {
-    id: 2,
-    name: 'qqq'
-  }]
+
+  const getStorageList = (key: string) => {
+    const initList = window.localStorage.getItem(key)
+    if (initList) {
+      return [...JSON.parse(initList as string)]
+    }
+    return []
+  }
+  const [favList, setFavList] = useState(getStorageList('favList') as FavListType)
+
   const initJokeList = (list: JokesListType) => {
     return list.map((item, index) => {
       if (favList && item.id === favList[index]) {
@@ -29,13 +35,6 @@ const MainPageView: React.FC = () => {
   const jokeListInitial = initJokeList(list)
   const [jokeList, setJokeList] = useState<ModJokesListType>(jokeListInitial)
 
-  // useEffect(() => {
-  //   const initList = window.localStorage.getItem('favList')
-  //   if (initList) {
-  //     setFavList(() => [...JSON.parse(initList)])
-  //     console.log(initList)
-  //   }
-  // }, [])
   useEffect(() => window.localStorage.setItem('favList', JSON.stringify(favList)), [favList])
 
   const addFavItem = (id: number) => {

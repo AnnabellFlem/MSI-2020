@@ -4,14 +4,14 @@
 .Jokes {
   height: 55vh;
   overflow: auto;
+  position: relative;
 }
 
 .Jokes__list {
   display: flex;
   flex-direction: column;
   margin-top: 0;
-  margin-bottom: 78px;
-  height: 45vh;
+  flex-basis: 45vh;
   overflow: visible;
 }
 
@@ -19,6 +19,7 @@
   background: $grey-light;
   border-radius: 20px;
   max-width: 900px;
+  height: auto;
 }
 
 .Jokes__item svg.heart {
