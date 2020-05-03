@@ -6,7 +6,7 @@ import { ModJokesListType } from '../../Types'
 type Props = {
   openFavList: boolean
   favList: ModJokesListType
-  handleFavorites: any
+  handleFavorites: (id: string) => void
 }
 
 const FavouriteListView: React.FC<Props> = ({ openFavList, favList, handleFavorites }) => {
@@ -14,12 +14,11 @@ const FavouriteListView: React.FC<Props> = ({ openFavList, favList, handleFavori
     <aside className={ `Favorite ${openFavList ? '' : 'Favorite--open'}` }>
       <h2 className="Favorite_title">Favourite</h2>
       <ul className="Favorite_list">
-        { favList.filter(item => item.isFavourite).map(({ id, isFavourite, description }) => {
-          return <JokeItem handleItem={ () => handleFavorites(id) }
-            id={ id } key={ id }
-            isFavourite={ isFavourite }
-            description={ description }
-            className="Favorite_item" />
+        { favList.filter(item => item.isFavourite).map((item) => {
+          return <JokeItem handleItem={ () => handleFavorites(item.id) }
+            key={ item.id }
+            className="Favorite_item"
+            { ...item } />
         }) }
       </ul>
     </aside>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './JokesListStyle.scss'
 import JokeItem from '../JokeItem'
 import { ModJokesListType } from '../../Types'
@@ -7,20 +7,18 @@ import Loader from '../Loader'
 
 type Props = {
   list: ModJokesListType
-  handleJokesList: any
+  handleJokesList: (id: string) => void
 }
 
 const JokesListView: React.FC<Props> = ({ list, handleJokesList }) => {
   return (<div className="Jokes">
     <ul className="Jokes__list">
-      { list.map(({ id, isFavourite, description }) => {
-        return <LazyLoad key={ id } overflow placeholder={ <Loader /> } >
-          <JokeItem handleItem={ () => handleJokesList(id) }
-            id={ id }
-            isFavourite={ isFavourite }
+      { list.map((item) => {
+        return <LazyLoad key={ item.id } overflow placeholder={ <Loader /> } >
+          <JokeItem handleItem={ () => handleJokesList(item.id) }
             className="Jokes__item"
-            key={ id }
-            description = { description } />
+            key={ item.id }
+            { ...item } />
         </LazyLoad>
       }) }
     </ul>

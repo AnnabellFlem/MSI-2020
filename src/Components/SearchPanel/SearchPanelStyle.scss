@@ -125,16 +125,15 @@ $btn-shadow: darken(rgba($purple-dark, .6), 30%);
 }
 
 .SearchPanel__categories li {
-  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
   border: 2px solid $grey-light;
   border-radius: 6px;
   position: relative;
 }
 
-.SearchPanel__categories li:first-child,
 .SearchPanel__categories li:last-child {
-  margin-left: 0;
+  margin-right: 0;
 }
 
 .SearchPanel__categories label {

@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from '../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../Images/svg/burger.svg'
 
 type Props = {
-  handleBtnClick: any
+  handleBtnClick: () => void
 }
 
 const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {

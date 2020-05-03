@@ -4,13 +4,12 @@ import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
-import { JokesListType, ModJokesListType, FavListType } from '../../Types'
+import { FavListType, JokesListType, ModJokesListType, RadioMode, RadioTypes } from '../../Types'
+import ChuckNorrisService from '../../Services/chucknorris-service'
+import Loader from '../Loader'
 
-type Props = {
-  list: JokesListType
-}
-
-const MainPageView: React.FC<Props> = ({ list }) => {
+const MainPageView: React.FC = () => {
+  const chuckNorrisService = new ChuckNorrisService()
   const [openFavList, setOpenFavList] = useState(false)
 
   const getStorageList = (key: string) => {
@@ -23,21 +22,51 @@ const MainPageView: React.FC<Props> = ({ list }) => {
   const [favList, setFavList] = useState(getStorageList('favList') as FavListType)
 
   const initJokeList = (list: JokesListType) => {
-    return list.map((item, index) => {
-      if (favList && item.id === favList[index]) {
-        return { ...item, isFavourite: true }
-      } else {
-        return { ...item, isFavourite: false }
-      }
-    })
+    if (list) {
+      return list.map((item, index) => {
+        if (favList && item.id === favList[index]) {
+          return { ...item, isFavourite: true }
+        } else {
+          return { ...item, isFavourite: false }
+        }
+      })
+    } else return []
   }
 
-  const jokeListInitial = initJokeList(list)
-  const [jokeList, setJokeList] = useState<ModJokesListType>(jokeListInitial)
+  const [list, setList] = useState([] as JokesListType)
+  const [jokeList, setJokeList] = useState([] as ModJokesListType)
+  const [error, setError] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  useEffect(() => {
+    setJokeList(initJokeList(list))
+  }, [list])
+
+  const getJokes = (obj: RadioMode) => {
+    let getData
+    if (obj.type === RadioTypes.Random) {
+      getData = chuckNorrisService.getRandomJoke()
+    } else if (obj.type === RadioTypes.Categories && obj.value) {
+      getData = chuckNorrisService.getJokeByCategoty(obj.value)
+    }
+    if (getData) {
+      getData.then((result) => {
+        console.log(result)
+        setIsLoaded(true)
+        setList([result])
+      }, (error) => {
+        setIsLoaded(true)
+        setError(error)
+      })
+    }
+  }
+
+  const handleCategories = (obj: RadioMode) => {
+    getJokes(obj)
+  }
 
   useEffect(() => window.localStorage.setItem('favList', JSON.stringify(favList)), [favList])
 
-  const addFavItem = (id: number) => {
+  const addFavItem = (id: string) => {
     const obj = jokeList.find(o => o.id === id)
     if (obj) {
       setFavList(favList => [...favList, obj.id])
@@ -46,12 +75,12 @@ const MainPageView: React.FC<Props> = ({ list }) => {
     return favList
   }
 
-  const deleteFavItem = (id: number, elem: number) => {
+  const deleteFavItem = (id: string, elem: string) => {
     setFavList(favList => favList.filter(e => e !== elem))
     setJokeList(jokeList => jokeList.map(item => item.id === id ? { ...item, isFavourite: false } : item))
   }
 
-  const handleJokesList = (id: number) => {
+  const handleJokesList = (id: string) => {
     const elem = favList.indexOf(id)
     if (elem !== -1) {
       deleteFavItem(id, favList[elem])
@@ -60,7 +89,7 @@ const MainPageView: React.FC<Props> = ({ list }) => {
     }
   }
 
-  const handleFavorites = (id: number) => {
+  const handleFavorites = (id: string) => {
     const elem = favList.indexOf(id)
     if (elem !== -1) {
       deleteFavItem(id, favList[elem])
@@ -73,7 +102,7 @@ const MainPageView: React.FC<Props> = ({ list }) => {
 
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
-    <MainLayout handleJokesList={ handleJokesList } list={ jokeList } />
+    <MainLayout handleCategories={ handleCategories } handleJokesList={ handleJokesList } list={ jokeList } />
     <FavouriteList handleFavorites={ handleFavorites } openFavList={ openFavList } favList={ jokeList } />
     <Footer />
   </>)
