@@ -35,7 +35,7 @@ export default class ChuckNorrisService {
 
   getJokeBySearch = async (query: string) => {
     const jokes = await this.getResource(`/jokes/search?query=${query}`)
-    return jokes.resJokeTypeults
+    return jokes.result
       .map(this._transformJoke)
       .slice(0, 50)
   };
@@ -51,7 +51,6 @@ export default class ChuckNorrisService {
   _transformJoke = (joke: ChuckNorrisApiJokeType): JokeType => {
     return {
       id: joke.id,
-      icon: joke.icon_url,
       url: joke.url,
       text: joke.value,
       categories: joke.categories,

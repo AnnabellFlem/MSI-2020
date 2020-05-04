@@ -18,6 +18,7 @@ const SearchPanelView: React.FC<Props> = ({ handleCategories }) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [categories, setCategories] = useState([] as Array<string>)
   const [radioVal, setRadioVal] = useState({ type: RadioTypes.Random } as RadioMode)
+  const [searchValid, setSearchValid] = useState(true)
 
   const getCategories = () => {
     chuckNorrisService
@@ -36,7 +37,11 @@ const SearchPanelView: React.FC<Props> = ({ handleCategories }) => {
   }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValid(true)
     if (e.target.name === RadioSubTypes.Search) {
+      if (e.target.value.length < 3) {
+        return setSearchValid(false)
+      }
       return setRadioVal({ type: RadioTypes.Search, value: e.target.value })
     } else if (e.target.name === RadioSubTypes.Category) {
       return setRadioVal({ type: RadioTypes.Categories, value: e.target.id })
@@ -82,6 +87,7 @@ const SearchPanelView: React.FC<Props> = ({ handleCategories }) => {
         placeholder="Free text search..."
         aria-label="Search through jokes"
         onChange={ e => handleChange(e) } />
+      { !searchValid && <span className="inputError">Text size must be between 3 and 120 characters</span> }
     </div>
     <button onClick={ () => handleCategories(radioVal) } className="SearchPanel__button">
       <span>Get a joke</span>

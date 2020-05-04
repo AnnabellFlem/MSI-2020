@@ -10,7 +10,6 @@ export interface ChuckNorrisApiJokeType {
 
 export interface JokeType {
   id: string
-  icon: string
   url: string
   text: string
   categories: string

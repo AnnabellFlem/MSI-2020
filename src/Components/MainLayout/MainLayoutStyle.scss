@@ -23,6 +23,16 @@
   font-size: $font-l;
 }
 
+.error {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+//.SearchPanel+.Jokes__item.Loader {
+//  display: none;
+//}
+
 @media (max-width: 1200px) {
   .main {
     margin: 0 ($indent-l / 2);

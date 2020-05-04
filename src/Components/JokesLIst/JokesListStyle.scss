@@ -2,7 +2,7 @@
 @import '../../Styles/sizes';
 
 .Jokes {
-  height: 55vh;
+  height: 49vh;
   overflow: auto;
   position: relative;
 }
@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 0;
-  flex-basis: 45vh;
+  flex-basis: 40vh;
   overflow: visible;
 }
 
@@ -37,4 +37,10 @@
 
 .Jokes__item .JokeItem__text {
   margin-bottom: 28px;
+}
+
+@media (max-width: 750px) {
+  .Jokes {
+    height: 38vh;
+  }
 }

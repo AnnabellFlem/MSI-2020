@@ -163,6 +163,10 @@ $btn-shadow: darken(rgba($purple-dark, .6), 30%);
   color: $dark;
 }
 
+.inputError {
+  color: $error;
+}
+
 #categories:checked ~ .SearchPanel__categories {
   display: flex;
   position: relative;

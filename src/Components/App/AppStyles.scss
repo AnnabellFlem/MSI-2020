@@ -5,14 +5,21 @@
   grid-template-areas: 'header favourites' 'main favourites' 'footer favourites';
   grid-template-rows: max-content 1fr max-content;
   grid-template-columns: 2fr 1fr;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 @media (max-width: 920px) {
   .App {
     grid-template-areas: 'header' 'main' 'footer';
     grid-template-columns: 1fr;
-    overflow: hidden;
+  }
+}
+
+@media (max-width: 350px) {
+  .App {
+    min-height: 110vh;
   }
 }

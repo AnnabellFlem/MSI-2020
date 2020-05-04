@@ -4,9 +4,8 @@ import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
-import { FavListType, JokesListType, ModJokesListType, RadioMode, RadioTypes } from '../../Types'
+import { FavListType, JokesListType, JokeType, ModJokesListType, RadioMode, RadioTypes } from '../../Types'
 import ChuckNorrisService from '../../Services/chucknorris-service'
-import Loader from '../Loader'
 
 const MainPageView: React.FC = () => {
   const chuckNorrisService = new ChuckNorrisService()
@@ -37,9 +36,24 @@ const MainPageView: React.FC = () => {
   const [jokeList, setJokeList] = useState([] as ModJokesListType)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
-  useEffect(() => {
-    setJokeList(initJokeList(list))
-  }, [list])
+
+  // const isJokeListArray = (value: JokeType | JokesListType) => {
+  //
+  // }
+
+  // useEffect(() => {
+  //   let jokesFavList
+  //   if (favList) {
+  //     jokesFavList = favList.map(joke => chuckNorrisService.getJokeById(joke))
+  //   }
+  //   if (jokesFavList) {
+  //     Promise.all(jokesFavList).then(result => {
+  //       isJokeListArray(result)
+  //     }, (error: any) => {
+  //       console.log(error)
+  //     })
+  //   }
+  // }, [])
 
   const getJokes = (obj: RadioMode) => {
     let getData
@@ -47,18 +61,31 @@ const MainPageView: React.FC = () => {
       getData = chuckNorrisService.getRandomJoke()
     } else if (obj.type === RadioTypes.Categories && obj.value) {
       getData = chuckNorrisService.getJokeByCategoty(obj.value)
+    } else if (obj.type === RadioTypes.Search && obj.value) {
+      getData = chuckNorrisService.getJokeBySearch(obj.value)
     }
     if (getData) {
       getData.then((result) => {
-        console.log(result)
         setIsLoaded(true)
-        setList([result])
+        if (Array.isArray(result)) {
+          setList(result)
+        } else {
+          setList([result])
+        }
+        console.log(jokeList)
+        setError(null)
       }, (error) => {
         setIsLoaded(true)
         setError(error)
       })
     }
   }
+
+  useEffect(() => {
+    setJokeList((prevList) => {
+      return [...prevList.filter(item => item.isFavourite), ...initJokeList(list)]
+    })
+  }, [list])
 
   const handleCategories = (obj: RadioMode) => {
     getJokes(obj)
@@ -102,7 +129,8 @@ const MainPageView: React.FC = () => {
 
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
-    <MainLayout handleCategories={ handleCategories } handleJokesList={ handleJokesList } list={ jokeList } />
+    <MainLayout handleCategories={ handleCategories } handleJokesList={ handleJokesList } list={ jokeList }
+      error={ error } isLoaded={ isLoaded } />
     <FavouriteList handleFavorites={ handleFavorites } openFavList={ openFavList } favList={ jokeList } />
     <Footer />
   </>)
