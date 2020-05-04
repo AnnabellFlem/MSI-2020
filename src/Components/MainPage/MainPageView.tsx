@@ -4,7 +4,7 @@ import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
-import { FavListType, JokesListType, JokeType, ModJokesListType, RadioMode, RadioTypes } from '../../Types'
+import { FavListType, JokesListType, RadioMode, RadioTypes } from '../../Types'
 import ChuckNorrisService from '../../Services/chucknorris-service'
 
 const MainPageView: React.FC = () => {
@@ -25,15 +25,14 @@ const MainPageView: React.FC = () => {
       return list.map((item, index) => {
         if (favList && item.id === favList[index]) {
           return { ...item, isFavourite: true }
-        } else {
-          return { ...item, isFavourite: false }
         }
+        return item
       })
     } else return []
   }
 
   const [list, setList] = useState([] as JokesListType)
-  const [jokeList, setJokeList] = useState([] as ModJokesListType)
+  const [jokeList, setJokeList] = useState([] as JokesListType)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 

@@ -4,12 +4,12 @@ import { ReactComponent as HeartFullIcon } from '../../Images/svg/heart-full.svg
 import { ReactComponent as HeartEmptyIcon } from '../../Images/svg/heart-empty.svg'
 import { ReactComponent as LinkIcon } from '../../Images/svg/link.svg'
 import { ReactComponent as MessageIcon } from '../../Images/svg/message.svg'
-import { ModJokesType } from '../../Types'
+import { JokeType } from '../../Types'
 
 type Props = {
     className: string
     handleItem: (id: string) => void
-} & ModJokesType
+} & JokeType
 
 const JokeItemView: React.FC<Props> = ({ className, handleItem, ...props }) => {
   return (

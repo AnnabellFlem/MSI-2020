@@ -1,11 +1,11 @@
 import React from 'react'
 import './FavouriteListStyle.scss'
 import JokeItem from '../JokeItem'
-import { ModJokesListType } from '../../Types'
+import { JokesListType } from '../../Types'
 
 type Props = {
   openFavList: boolean
-  favList: ModJokesListType
+  favList: JokesListType
   handleFavorites: (id: string) => void
 }
 

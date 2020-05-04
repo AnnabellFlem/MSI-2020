@@ -2,11 +2,11 @@ import React from 'react'
 import './MainLayoutStyle.scss'
 import SearchPanel from '../SearchPanel'
 import JokesList from '../JokesLIst'
-import { ModJokesListType, RadioMode } from '../../Types'
+import { JokesListType, RadioMode } from '../../Types'
 import Loader from '../Loader'
 
 type Props = {
-  list: ModJokesListType
+  list: JokesListType
   handleJokesList: (id: string) => void
   handleCategories: (obj: RadioMode) => void
   error: any

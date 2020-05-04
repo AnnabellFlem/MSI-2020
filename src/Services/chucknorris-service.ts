@@ -54,7 +54,8 @@ export default class ChuckNorrisService {
       url: joke.url,
       text: joke.value,
       categories: joke.categories,
-      updatedAt: this._transformTime(joke.updated_at)
+      updatedAt: this._transformTime(joke.updated_at),
+      isFavourite: false
     }
   }
 }

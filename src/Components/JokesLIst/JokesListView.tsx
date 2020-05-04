@@ -1,12 +1,12 @@
 import React from 'react'
 import './JokesListStyle.scss'
 import JokeItem from '../JokeItem'
-import { ModJokesListType } from '../../Types'
+import { JokesListType } from '../../Types'
 import LazyLoad from 'react-lazyload'
 import Loader from '../Loader'
 
 type Props = {
-  list: ModJokesListType
+  list: JokesListType
   handleJokesList: (id: string) => void
 }
 
