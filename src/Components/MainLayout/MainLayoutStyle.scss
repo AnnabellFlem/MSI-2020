@@ -29,9 +29,9 @@
   width: 50%;
 }
 
-//.SearchPanel+.Jokes__item.Loader {
-//  display: none;
-//}
+.SearchPanel+.Jokes__item.Loader {
+  display: none;
+}
 
 @media (max-width: 1200px) {
   .main {

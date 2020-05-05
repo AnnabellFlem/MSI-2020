@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './MainPageStyle.scss'
 import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -26,31 +25,37 @@ const MainPageView: React.FC = () => {
 
   const initJokeList = (list: JokesListType) => {
     if (list) {
-      return list.map((item, index) => {
-        if (favList && item.id === favList[index]) {
-          return { ...item, isFavourite: true/*, isDataFromServer: true */ }
+      return list.map((item) => {
+        console.log(item)
+        if (favList && favList.includes(item.id)) {
+          return { ...item, isFavourite: true }
         }
         return item
-      })// .filter(item => !favList.includes(item.id))
+      })
     } else return []
   }
-  // const isJokeListArray = (value: JokeType | JokesListType) => {
-  //
-  // }
 
-  // useEffect(() => {
-  //   let jokesFavList
-  //   if (favList) {
-  //     jokesFavList = favList.map(joke => chuckNorrisService.getJokeById(joke))
-  //   }
-  //   if (jokesFavList) {
-  //     Promise.all(jokesFavList).then(result => {
-  //       isJokeListArray(result)
-  //     }, (error: any) => {
-  //       console.log(error)
-  //     })
-  //   }
-  // }, [])
+  const objAsArray = (obj: JokeType | JokesListType) => {
+    if (Array.isArray(obj)) {
+      return obj
+    } else {
+      return [obj]
+    }
+  }
+
+  useEffect(() => {
+    let jokesFavList
+    if (favList) {
+      jokesFavList = favList.map(joke => chuckNorrisService.getJokeById(joke))
+    }
+    if (jokesFavList) {
+      Promise.all(jokesFavList).then(result => {
+        setList(objAsArray(result))
+      }, (error: any) => {
+        console.log(error)
+      })
+    }
+  }, [])
 
   const getJokes = (obj: RadioMode) => {
     let getData
@@ -67,12 +72,7 @@ const MainPageView: React.FC = () => {
         setJokeList((prevList) => {
           return [...prevList.map(item => item.isDataFromServer ? { ...item, isDataFromServer: false } : item)]
         })
-        if (Array.isArray(result)) {
-          setList(result)
-        } else {
-          setList([result])
-        }
-        console.log(jokeList)
+        setList(objAsArray(result))
         setError(null)
       }, (error) => {
         setIsLoaded(true)
@@ -83,39 +83,14 @@ const MainPageView: React.FC = () => {
 
   useEffect(() => {
     setJokeList((prevList) => {
-      // const t = initJokeList(list)
       const arr = initJokeList(list)
       const prev = prevList
         .filter(item => item.isFavourite)
       if (prev.length) {
-        // const newList = arr.map((item, index) => {
-        //   if (prev[index].id === item.id) {
-        //     return item
-        //   } else {
-        //     return item, prev[index]
-        //   }
-        // })
-        // return newList
         return [...prev.filter(item => !arr.some(e => e.id === item.id)), ...arr]
       } else {
         return arr
       }
-      // const arr = Array.from(new Map(newList.map(item =>
-      //   [item[item.id], item])).values())
-      // return arr
-      //   .filter((item, index) => newList.some((sameIdElem, sameIdElemIndex) => {
-      //   return sameIdElem.id === item.id && sameIdElemIndex !== index
-      // }))
-      // [...prevList
-      // .map((item) => {
-      //   if (Array.isArray(list)) {
-      //     return list.map(el => el.id === item.id ? { ...el, isDataFromServer: true } : el)
-      //   } else {
-      //     return list[item.id] ? { ...item, isDataFromServer: true } : item
-      //   }
-      // })
-      // .filter(item => item.isFavourite && !t.includes(item.id)), ...t]//initJokeList(list)]
-      // .filter(item => item.isFavourite), ...initJokeList(list)].filter((item, index) => )
     })
   }, [list])
 
@@ -159,7 +134,6 @@ const MainPageView: React.FC = () => {
     setOpenFavList(!openFavList)
   }
 
-  console.log(jokeList)
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
     <MainLayout handleCategories={ handleCategories } handleJokesList={ handleJokesList } list={ jokeList }

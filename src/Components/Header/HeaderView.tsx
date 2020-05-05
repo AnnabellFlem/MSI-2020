@@ -9,6 +9,8 @@ type Props = {
 
 const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
   const [closeIcon, setCloseIcon] = useState(false)
+  const openText = 'Open list of favourite jokes'
+  const closeText = 'Close list of favourite jokes'
   const iconClick = () => {
     setCloseIcon(!closeIcon)
     handleBtnClick()
@@ -17,7 +19,7 @@ const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
   return (
     <header className={ `Header ${closeIcon ? 'Header-overlay' : ''}` }>
       <h1 className="Header__logo">MSI 2020</h1>
-      <button className="Header__menu" aria-label="Open list of favourite jokes"
+      <button className="Header__menu" aria-label={ closeIcon ? closeText : openText }
         onClick={ () => iconClick() } >
         { closeIcon ? <CloseIcon tabIndex={ 0 } /> : <BurgerIcon tabIndex={ 0 } /> }
         <span>Favourite</span>
