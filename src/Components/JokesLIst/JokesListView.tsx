@@ -13,7 +13,7 @@ type Props = {
 const JokesListView: React.FC<Props> = ({ list, handleJokesList }) => {
   return (<div className="Jokes">
     <ul className="Jokes__list">
-      { list.map((item) => {
+      { list.filter(item => item.isDataFromServer).map((item) => {
         return <LazyLoad key={ item.id } overflow placeholder={ <Loader /> } >
           <JokeItem handleItem={ () => handleJokesList(item.id) }
             className="Jokes__item"

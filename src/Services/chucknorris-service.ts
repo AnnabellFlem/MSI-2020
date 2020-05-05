@@ -55,7 +55,8 @@ export default class ChuckNorrisService {
       text: joke.value,
       categories: joke.categories,
       updatedAt: this._transformTime(joke.updated_at),
-      isFavourite: false
+      isFavourite: false,
+      isDataFromServer: true
     }
   }
 }

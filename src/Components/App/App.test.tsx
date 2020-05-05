@@ -1,9 +1,7 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import AppView from './AppView'
+import { shallow } from 'enzyme'
+import App from './AppView'
 
-test('renders learn react link', () => {
-  const { getByText } = render(<AppView />)
-  const linkElement = getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
+it('Component App should render without crashing', () => {
+  expect(shallow(<App />).exists()).toBeTruthy()
 })

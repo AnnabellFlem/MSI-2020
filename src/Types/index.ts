@@ -15,6 +15,7 @@ export interface JokeType {
   categories: string
   updatedAt: string
   isFavourite: boolean
+  isDataFromServer: boolean
 }
 
 export type JokesListType = Array<JokeType>

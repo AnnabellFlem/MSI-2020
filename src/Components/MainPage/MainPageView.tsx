@@ -4,7 +4,7 @@ import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import FavouriteList from '../FavouriteList/FavouriteListView'
-import { FavListType, JokesListType, RadioMode, RadioTypes } from '../../Types'
+import { FavListType, JokesListType, JokeType, RadioMode, RadioTypes } from '../../Types'
 import ChuckNorrisService from '../../Services/chucknorris-service'
 
 const MainPageView: React.FC = () => {
@@ -19,23 +19,21 @@ const MainPageView: React.FC = () => {
     return []
   }
   const [favList, setFavList] = useState(getStorageList('favList') as FavListType)
-
-  const initJokeList = (list: JokesListType) => {
-    if (list) {
-      return list.map((item, index) => {
-        if (favList && item.id === favList[index]) {
-          return { ...item, isFavourite: true }
-        }
-        return item
-      })
-    } else return []
-  }
-
   const [list, setList] = useState([] as JokesListType)
   const [jokeList, setJokeList] = useState([] as JokesListType)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
+  const initJokeList = (list: JokesListType) => {
+    if (list) {
+      return list.map((item, index) => {
+        if (favList && item.id === favList[index]) {
+          return { ...item, isFavourite: true/*, isDataFromServer: true */ }
+        }
+        return item
+      })// .filter(item => !favList.includes(item.id))
+    } else return []
+  }
   // const isJokeListArray = (value: JokeType | JokesListType) => {
   //
   // }
@@ -66,6 +64,9 @@ const MainPageView: React.FC = () => {
     if (getData) {
       getData.then((result) => {
         setIsLoaded(true)
+        setJokeList((prevList) => {
+          return [...prevList.map(item => item.isDataFromServer ? { ...item, isDataFromServer: false } : item)]
+        })
         if (Array.isArray(result)) {
           setList(result)
         } else {
@@ -82,7 +83,39 @@ const MainPageView: React.FC = () => {
 
   useEffect(() => {
     setJokeList((prevList) => {
-      return [...prevList.filter(item => item.isFavourite), ...initJokeList(list)]
+      // const t = initJokeList(list)
+      const arr = initJokeList(list)
+      const prev = prevList
+        .filter(item => item.isFavourite)
+      if (prev.length) {
+        // const newList = arr.map((item, index) => {
+        //   if (prev[index].id === item.id) {
+        //     return item
+        //   } else {
+        //     return item, prev[index]
+        //   }
+        // })
+        // return newList
+        return [...prev.filter(item => !arr.some(e => e.id === item.id)), ...arr]
+      } else {
+        return arr
+      }
+      // const arr = Array.from(new Map(newList.map(item =>
+      //   [item[item.id], item])).values())
+      // return arr
+      //   .filter((item, index) => newList.some((sameIdElem, sameIdElemIndex) => {
+      //   return sameIdElem.id === item.id && sameIdElemIndex !== index
+      // }))
+      // [...prevList
+      // .map((item) => {
+      //   if (Array.isArray(list)) {
+      //     return list.map(el => el.id === item.id ? { ...el, isDataFromServer: true } : el)
+      //   } else {
+      //     return list[item.id] ? { ...item, isDataFromServer: true } : item
+      //   }
+      // })
+      // .filter(item => item.isFavourite && !t.includes(item.id)), ...t]//initJokeList(list)]
+      // .filter(item => item.isFavourite), ...initJokeList(list)].filter((item, index) => )
     })
   }, [list])
 
@@ -126,6 +159,7 @@ const MainPageView: React.FC = () => {
     setOpenFavList(!openFavList)
   }
 
+  console.log(jokeList)
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
     <MainLayout handleCategories={ handleCategories } handleJokesList={ handleJokesList } list={ jokeList }
