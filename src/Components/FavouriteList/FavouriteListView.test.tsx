@@ -1,14 +1,14 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import FavouriteList from './FavouriteListView'
-import { MOCK_FAV_LIST } from '../../__mocks__/mockJokeLIst'
+import { MOCK_LIST } from '../../__mocks__/mockJokeLIst'
 
 const MOCK_HANDLE_FUNC = jest.fn()
 const MOCK_FAV_OPEN = false
 const MOCK_CLASS_NAME = 'Favorite--open'
 
 describe('<FavouriteList /> test', () => {
-  let wrapper = mount(<FavouriteList favList={ MOCK_FAV_LIST } openFavList={ MOCK_FAV_OPEN } handleFavorites={ MOCK_HANDLE_FUNC } />)
+  let wrapper = mount(<FavouriteList favList={ MOCK_LIST } openFavList={ MOCK_FAV_OPEN } handleFavorites={ MOCK_HANDLE_FUNC } />)
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()
@@ -20,7 +20,7 @@ describe('<FavouriteList /> test', () => {
 
   it(`Component should render <aside /> with className ${MOCK_CLASS_NAME}`, () => {
     const MOCK_FAV_OPEN = true
-    wrapper = mount(<FavouriteList favList={ MOCK_FAV_LIST } openFavList={ MOCK_FAV_OPEN } handleFavorites={ MOCK_HANDLE_FUNC } />)
+    wrapper = mount(<FavouriteList favList={ MOCK_LIST } openFavList={ MOCK_FAV_OPEN } handleFavorites={ MOCK_HANDLE_FUNC } />)
     expect(wrapper.find('aside').hasClass('Favorite--open')).toBeFalsy()
   })
 

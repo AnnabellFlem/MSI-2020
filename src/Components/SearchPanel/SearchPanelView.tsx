@@ -41,8 +41,9 @@ const SearchPanelView: React.FC<Props> = ({ handleCategories }) => {
     if (e.target.name === RadioSubTypes.Search) {
       if (e.target.value.length < 3) {
         return setSearchValid(false)
+      } else {
+        return setRadioVal({ type: RadioTypes.Search, value: e.target.value })
       }
-      return setRadioVal({ type: RadioTypes.Search, value: e.target.value })
     } else if (e.target.name === RadioSubTypes.Category) {
       return setRadioVal({ type: RadioTypes.Categories, value: e.target.id })
     } else {
