@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/MSI-2020/static/css/main.15a9874f.chunk.css",
+    "main.js": "/MSI-2020/static/js/main.207030fe.chunk.js",
+    "main.js.map": "/MSI-2020/static/js/main.207030fe.chunk.js.map",
+    "runtime-main.js": "/MSI-2020/static/js/runtime-main.d8334de7.js",
+    "runtime-main.js.map": "/MSI-2020/static/js/runtime-main.d8334de7.js.map",
+    "static/js/2.b9502f6d.chunk.js": "/MSI-2020/static/js/2.b9502f6d.chunk.js",
+    "static/js/2.b9502f6d.chunk.js.map": "/MSI-2020/static/js/2.b9502f6d.chunk.js.map",
+    "index.html": "/MSI-2020/index.html",
+    "precache-manifest.ada46208aa4da25d9aa61ea749aa4e40.js": "/MSI-2020/precache-manifest.ada46208aa4da25d9aa61ea749aa4e40.js",
+    "service-worker.js": "/MSI-2020/service-worker.js",
+    "static/css/main.15a9874f.chunk.css.map": "/MSI-2020/static/css/main.15a9874f.chunk.css.map",
+    "static/js/2.b9502f6d.chunk.js.LICENSE.txt": "/MSI-2020/static/js/2.b9502f6d.chunk.js.LICENSE.txt",
+    "static/media/burger.d51b4ae0.svg": "/MSI-2020/static/media/burger.d51b4ae0.svg",
+    "static/media/close.792fb2b1.svg": "/MSI-2020/static/media/close.792fb2b1.svg",
+    "static/media/heart-empty.37c0415c.svg": "/MSI-2020/static/media/heart-empty.37c0415c.svg",
+    "static/media/heart-full.e92b7d29.svg": "/MSI-2020/static/media/heart-full.e92b7d29.svg",
+    "static/media/link.eddafd74.svg": "/MSI-2020/static/media/link.eddafd74.svg",
+    "static/media/message.c33f56f2.svg": "/MSI-2020/static/media/message.c33f56f2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d8334de7.js",
+    "static/js/2.b9502f6d.chunk.js",
+    "static/css/main.15a9874f.chunk.css",
+    "static/js/main.207030fe.chunk.js"
+  ]
+}
