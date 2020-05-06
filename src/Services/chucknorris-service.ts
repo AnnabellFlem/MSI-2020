@@ -19,7 +19,7 @@ export default class ChuckNorrisService {
     return this._transformJoke(joke)
   }
 
-  getCategoties = async () => {
+  getCategories = async () => {
     return await this.getResource('/jokes/categories/')
   }
 
@@ -28,7 +28,7 @@ export default class ChuckNorrisService {
     return this._transformJoke(joke)
   }
 
-  getJokeByCategoty = async (category: string) => {
+  getJokeByCategory = async (category: string) => {
     const joke = await this.getResource(`/jokes/random?category=${category}`)
     return this._transformJoke(joke)
   }

@@ -62,7 +62,7 @@ const MainPageView: React.FC = () => {
     if (obj.type === RadioTypes.Random) {
       getData = chuckNorrisService.getRandomJoke()
     } else if (obj.type === RadioTypes.Categories && obj.value) {
-      getData = chuckNorrisService.getJokeByCategoty(obj.value)
+      getData = chuckNorrisService.getJokeByCategory(obj.value)
     } else if (obj.type === RadioTypes.Search && obj.value) {
       getData = chuckNorrisService.getJokeBySearch(obj.value)
     }

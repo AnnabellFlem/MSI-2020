@@ -22,7 +22,7 @@ const SearchPanelView: React.FC<Props> = ({ handleCategories }) => {
 
   const getCategories = () => {
     chuckNorrisService
-      .getCategoties()
+      .getCategories()
       .then((result) => {
         setIsLoaded(true)
         setCategories(result)
