@@ -1,5 +1,5 @@
 {
-  "homepage": "https://annabellflem.github.io/chukjokes",
+  "homepage": "https://annabellflem.github.io/MSI-2020",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -38,6 +38,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.2.0",
     "sass-loader": "^8.0.2"
   },
   "scripts": {

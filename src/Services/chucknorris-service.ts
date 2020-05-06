@@ -44,8 +44,10 @@ export default class ChuckNorrisService {
     const date = Date.parse(updated)
     if (date) {
       return moment(date).fromNow()
+    } else {
+      const startDate = moment(updated, 'YYYY-MM-DD HH:mm').toDate()
+      return moment(startDate).fromNow()
     }
-    return ''
   }
 
   _transformJoke = (joke: ChuckNorrisApiJokeType): JokeType => {
