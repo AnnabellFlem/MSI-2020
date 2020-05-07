@@ -13,6 +13,12 @@ Application has the following features:
 - Jokes marked as favourite appear in the right section Favourite.
 - Favourite jokes is available after reloading the page and stored in the browser.
 
+#### Future Improvements
+
+* Add a state manager to the implementation(for better testing functions and isolating state control logic)
+* Improve the interaction process with manual joke search(Display message that no jokes were found)
+* Add clearer typing and handling of server errors
+* Improve accessibility with more WAI-ARIA
 
 This project was bootstrapped with [Create React AppView](https://github.com/facebook/create-react-app).
 
@@ -42,7 +48,7 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `npm run build(predeploy)`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -52,8 +58,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm eject` 
+
+If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+
+### `npm deploy` 
+
+The `predeploy` script will run automatically before `deploy` is run.
+This command allows you to deploy the project via **GitHub Pages** from the url with key `"homepage"` in `package.json`.
+
 ## Learn More
 
 You can learn more in the [Create React AppView documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
