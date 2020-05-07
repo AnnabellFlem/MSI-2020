@@ -26,7 +26,6 @@ const MainPageView: React.FC = () => {
   const initJokeList = (list: JokesListType) => {
     if (list) {
       return list.map((item) => {
-        console.log(item)
         if (favList && favList.includes(item.id)) {
           return { ...item, isFavourite: true }
         }
