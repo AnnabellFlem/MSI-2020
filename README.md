@@ -1,5 +1,5 @@
 # About project
-This project was created for educational purposes and for [MacPaw](https://macpaw.com/) internship selection. 
+This project was created for educational purposes. 
 
 Written using **React** and **TypeScript**.
 
